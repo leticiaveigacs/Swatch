@@ -1,0 +1,75 @@
+ protected void btn_excel1_Click(object sender, EventArgs e)
+        {
+           
+
+            Response.Clear();
+            Response.AddHeader("Content-Disposition","attachment, filename=ficheiro.xls");
+
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.BinaryWrite(System.Text.Encoding.UTF8.GetPreamble());
+
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+
+            htw.Write($"<h1><b> Nome: </b><h1>{tb_nome.Text}";
+
+
+           // htw.Write($"<table><tr><td><b> Nome: </b></table></tr></td>{tb_nome.Text} <table><tr><td><b> Morada: </b></table></tr></td>{tb_morada.Text}");
+
+
+            // htw.Write($"<table><tr><td><b> Nome: </b></td><td>{tb_nome.Text}</td></tr><tr><td><b> Morada: </b></td><td>{tb_morada.Text}</td></tr><tr><td><b> Regime: </b></td><td>{ddl_regime.Text}</td></tr><tr><td><b> Curso: </b></td><td>{ddl_cursos.Text}</td></tr><tr<td><b> Gênero: </b></td><td>{rbl_genero.Text}</td></tr><tr><td><b> Hobbies: </b></td><td>{cbl_hobbies.Text}</td></tr><tr><td><b> E-mail: </b></td><td>{tb_email.Text}</td></tr></table>");
+
+            Response.Write(sw.ToString());
+            Response.End();   
+
+        }
+
+        protected void btn_word1_Click(object sender, EventArgs e)
+        {
+            Response.Clear();
+            Response.AddHeader("Content-Disposition", "attachment, filename=ficheiro.doc");
+
+            Response.ContentType = "application/vnd.ms-word";
+            Response.BinaryWrite(System.Text.Encoding.UTF8.GetPreamble());
+
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+
+           // htw.Write($"<table><tr><td><b> Nome: </b></td><td>{tb_nome.Text} <td></tr><tr><tb><b> Morada: </b></td><td>{tb_morada.Text}<tb></tr></table>");
+            //  htw.Write($"<table><tr><td><b> Nome: </b></td><td>{tb_nome.Text}</td></tr><tr><td><b> Morada: </b></td><td>{tb_morada.Text}</td></tr><tr><td><b> Regime: </b></td><td>{ddl_regime.Text}</td></tr><tr><td><b> Curso: </b></td><td>{ddl_cursos.Text}</td></tr><tr<td><b> Gênero: </b></td><td>{rbl_genero.Text}</td></tr><tr><td><b> Hobbies: </b></td><td>{cbl_hobbies.Text}</td></tr><tr><td><b> E-mail: </b></td><td>{tb_email.Text}</td></tr></table>");
+
+
+            Response.Write(sw.ToString());
+            Response.End();
+        }
+
+        protected void btn_pdf1_Click(object sender, EventArgs e)
+        {
+            Response.Clear();
+            Response.AddHeader("Content-Disposition", "attachment, filename=ficheiro.pdf");
+
+            Response.ContentType = "application/vnd.pdf";
+
+            string texto =;
+           //  string texto = $"<table><tr><td><b> Nome: </b></td><td>{tb_nome.Text} <td></tr><tr><tb><b> Morada: </b></td><td>{tb_morada.Text}<tb></tr></table>");
+
+
+           StringReader sr = new StringReader(texto);
+
+            Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 10f);
+            HTMLWorker hworker = new HTMLWorker(pdfDoc);
+            pdfDocWriter.GetIstance(pdfDoc, Response.OutputStream);
+
+            pdfDoc.Open();
+            hworker.Parse();
+            pdfDoc.Close();
+
+            Response.Write(pdfDoc);
+            Response.End();
+
+
+ 
+
+
+        }
+    }
