@@ -34,7 +34,7 @@ O projeto **Swatch** é uma solução voltada para instituições ou indivíduos
 - **Tecnologias Utilizadas**: ASP.NET Web Forms, C#, SQL Server, HTML, CSS.
 - **Backend**: Implementado em C# com ASP.NET Web Forms, gerenciando a lógica do servidor e interações com o banco de dados.
 - **Banco de Dados**: SQL Server para armazenamento de informações sobre usuários e inscrições.
-- **Frontend**: HTML e CSS para criar uma interface de usuário intuitiva e responsiva.
+- **Frontend**: HTML e CSS para criar uma interface de usuário intuitiva.
 
 ## Como Executar Localmente 💻
 
